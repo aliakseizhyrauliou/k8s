@@ -1,0 +1,21 @@
+postgresService:
+  name: postgres-svc
+
+
+postgresDeployment:
+  name: postgres
+  selector: postgres
+  port: 5432
+  containerName: postgres
+  image: postgres
+  tag: latest
+  volumeMounts: /var/lib/postgresql/data
+  volumeName: postgres-storage
+
+
+volumeClaim:
+  name: postgres-pvc
+  storage: 2Gi
+  volumeMode: Filesystem
+  accessModes: [ ReadWriteOnce ]
+  

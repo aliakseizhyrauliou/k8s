@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-deploy
+spec:
+  replicas: {{ .Values.bookingAppDeploy.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.bookingAppDeploy.image.repository }}:{{ .Values.bookingAppDeploy.image.tag }}"
+        imagePullPolicy: {{ .Values.bookingAppDeploy.image.pullPolicy }}
+        env:
+          {{- include "booking_envs" . | indent 10 }}
+        resources:
+          limits:
+            {{- toYaml .Values.bookingAppDeploy.resources.limits | nindent 12 }}
+        ports:
+        - containerPort: {{ .Values.bookingApp.APP_PORT._default }}

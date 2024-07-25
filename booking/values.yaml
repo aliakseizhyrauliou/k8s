@@ -4,18 +4,19 @@ bookingApp:
       dev: "DevStand"
       prod: "Production"
     DB_HOST: 
-      _default: "postgres"
-      dev: "DevStand"
+      _default: "postgres-svc"
+      dev: "postgres-svc"
       prod: "127.0.0.1"
     DB_USER: 
       _default: postgres
     DB_PASSWORD: 
       _default: postgres
-      prod: "pass"
+      dev: postgres
+      prod: postgres
     DB_NAME: 
       _default: "postgres"
     DB_PORT: 
-      _default: "postgres"
+      _default: 5432
     APP_PORT: 
       _default: "9002"
       dev: "9002"
@@ -34,21 +35,6 @@ bookingAppDeploy:
       cpu: "500m"
 
 
-persistenceVolume:
-  storageClassName: ""
-  storage: "2Gi"
-  accessModes: ["ReadWriteMany"]
-  hostPath: "/data/postgresql"
-
-
-ingress:
-  enabled: true
-  className: "nginx"
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: booking.appka.com
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
+bookingAppService:
+  name: booking-service
+  port: 5000
