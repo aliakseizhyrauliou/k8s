@@ -3,6 +3,6 @@
 {{- range $name, $map := .Values.bookingApp }}
 {{- $value := pluck $.Values.global.env $map | first | default $map._default }}
 - name: {{ $name }}
-  value: {{ $value  }}
+  value: {{ $value | quote}}
 {{- end }}
 {{- end }}

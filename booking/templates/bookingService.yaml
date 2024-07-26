@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.bookingAppService.name }}
 spec:
   selector:
-    app: {{ .Values.bookingAppService.name }}
+    app: {{ .Values.bookingAppDeploy.selector }}
   ports:
   - port: {{ .Values.bookingAppService.port }}
     targetPort: {{ .Values.bookingApp.APP_PORT._default }}

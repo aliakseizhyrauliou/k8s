@@ -8,7 +8,7 @@ postgresDeployment:
   port: 5432
   containerName: postgres
   image: postgres
-  tag: latest
+  tag: 16
   volumeMounts: /var/lib/postgresql/data
   volumeName: postgres-storage
 
@@ -19,3 +19,7 @@ volumeClaim:
   volumeMode: Filesystem
   accessModes: [ ReadWriteOnce ]
   
+
+configMap:
+  configMapName: postgres-config
+  postgresDb: postgres

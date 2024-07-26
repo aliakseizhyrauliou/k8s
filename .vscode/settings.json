@@ -1,5 +1,8 @@
 {
     "yaml.schemas": {
-        "https://json.schemastore.org/helmfile.json": "file:///d%3A/Learn/k8s/nginx-app/templates/deployment.yaml"
+        "https://json.schemastore.org/helmfile.json": [
+            "file:///d%3A/Learn/k8s/nginx-app/templates/deployment.yaml",
+            "file:///d%3A/Learn/k8s/postgres/configMapPostgres.yaml"
+        ]
     }
 }

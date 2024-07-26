@@ -7,23 +7,16 @@ bookingApp:
       _default: "postgres-svc"
       dev: "postgres-svc"
       prod: "127.0.0.1"
-    DB_USER: 
-      _default: postgres
-    DB_PASSWORD: 
-      _default: postgres
-      dev: postgres
-      prod: postgres
-    DB_NAME: 
-      _default: "postgres"
     DB_PORT: 
       _default: 5432
     APP_PORT: 
-      _default: "9002"
-      dev: "9002"
-      prod: "8080"
+      _default: 9002
+      dev: 9002
+      prod: 8080
 
 
 bookingAppDeploy:
+  selector: booking-app
   replicaCount: 1
   image:
     repository: aliakseizhurauliou/booking-app
@@ -38,3 +31,15 @@ bookingAppDeploy:
 bookingAppService:
   name: booking-service
   port: 5000
+
+global:
+  env: dev
+
+
+ingress:
+  name: bookgin-ingress
+  className: nginx
+  host:
+    _default: booking.appka.com
+    prod: my-app.com
+

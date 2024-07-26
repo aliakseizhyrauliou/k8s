@@ -11,8 +11,6 @@ limits:
     cpu: "500m"
 {{- end }}
 
-
-
 {{- define "postgres.envs" }}
 - name: POSTGRES_USER
   valueFrom:
@@ -24,4 +22,9 @@ limits:
     secretKeyRef:
       name: postgres-secrets
       key: POSTGRES_PASSWORD
+- name: POSTGRES_DB
+  valueFrom:
+    configMapKeyRef:
+      name: {{ .Values.configMap.configMapName }}
+      key: POSTGRES_DB
 {{- end }}

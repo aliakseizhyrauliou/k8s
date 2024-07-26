@@ -6,18 +6,19 @@ spec:
   replicas: {{ .Values.bookingAppDeploy.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Chart.Name }}
+      app: {{ .Values.bookingAppDeploy.selector }}
   template:
     metadata:
       labels:
-        app: {{ .Chart.Name }}
+        app: {{ .Values.bookingAppDeploy.selector }}
     spec:
       containers:
-      - name: {{ .Chart.Name }}
+      - name: {{ .Values.bookingAppDeploy.selector }}
         image: "{{ .Values.bookingAppDeploy.image.repository }}:{{ .Values.bookingAppDeploy.image.tag }}"
         imagePullPolicy: {{ .Values.bookingAppDeploy.image.pullPolicy }}
         env:
-          {{- include "booking_envs" . | indent 10 }}
+          {{- include "postgres.envs" . | nindent 12 }}
+          {{- include "booking_envs" . | indent 12 }}
         resources:
           limits:
             {{- toYaml .Values.bookingAppDeploy.resources.limits | nindent 12 }}

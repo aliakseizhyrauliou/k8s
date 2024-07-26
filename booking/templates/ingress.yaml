@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.ingress.name }}
+  labels:
+    name: {{ .Values.ingress.name }}
+spec:
+  ingressClassName: {{ .Values.ingress.className }}
+  rules:
+  - host: {{ .Values.ingress.host._default }}
+    http:
+      paths:
+      - pathType: Prefix
+        {{- include "path-ingress-booking" . | indent 8 }}
