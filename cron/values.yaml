@@ -1,0 +1,9 @@
+cronjobs:
+  curl-nginx:
+    schedule: "*/2 * * * *"
+    command:
+      - "curl"
+    args:
+      - "nginx-service:80"
+    image: "nginx"
+    restartPolicy: "OnFailure"

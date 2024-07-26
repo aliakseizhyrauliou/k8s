@@ -1,0 +1,18 @@
+{{- range $name, $params := .Values.cronjobs }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: "{{ $.Chart.Name }}-{{ $name }}"
+spec:
+  schedule: "{{ $params.schedule }}"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: {{ $name }}
+            image: {{ $params.image }}
+            command: {{ toJson $params.command }}
+            args: {{ toJson $params.args }}
+          restartPolicy: {{ $params.restartPolicy }}
+{{- end }}
