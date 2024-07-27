@@ -1,0 +1,9 @@
+serviceAccount:
+  name: read-only-sa
+  namespace: default
+
+clusterRole:
+  name: read-only-clusterrole
+
+clusterRoleBinding:
+  name: read-only-clusterrolebinding
