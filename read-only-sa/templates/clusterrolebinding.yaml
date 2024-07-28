@@ -6,6 +6,9 @@ subjects:
 - kind: ServiceAccount
   name: {{ .Values.serviceAccount.name }}
   namespace: {{ .Values.serviceAccount.namespace }}
+- kind: User
+  name: {{ .Values.user.userName }}
+  apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
   name: {{ .Values.clusterRole.name }}

@@ -7,3 +7,6 @@ clusterRole:
 
 clusterRoleBinding:
   name: read-only-clusterrolebinding
+
+user:
+  userName: user
